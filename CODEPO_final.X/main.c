@@ -335,7 +335,7 @@ int main(void) {
                     fsmState = BATGAUGE;
                 }
                 if (total_time_since_last_transmission > interval_sending_h*3600 || bool_alert_percentage){
-                    dummyForBreakpoint=0;
+//                    dummyForBreakpoint=0;
                     total_time_since_last_transmission=0;
                     fsmState = ESTABLISHCONNECTION;
                 }
@@ -413,7 +413,7 @@ int main(void) {
                     tsSendInstruction(createCmd, CREATE_CMD_LENGTH, echo_create, CREATE_ECHO_LENGTH);
                     nb_attempts_create++;
                     int stopTrying = memcmp(echo_create_success, echo_create, sizeof echo_create_success);//returns 0 if successful echo
-                    dummyForBreakpoint=0;
+//                    dummyForBreakpoint=0;
                     if ((stopTrying==0)|| (nb_attempts_create>=MAX_TRY)) {trying_create=0;}
                 }
                 
@@ -428,7 +428,7 @@ int main(void) {
                        tsSendInstruction(connectCmd, CONNECT_CMD_LENGTH, echo_connect, CONNECT_ECHO_LENGTH);
                        nb_attempts_connect++;
                        int stopTrying = memcmp(echo_connect_success, echo_connect, sizeof echo_connect_success);//returns 0 if successful echo
-                       dummyForBreakpoint=0;
+//                       dummyForBreakpoint=0;
                        if ((stopTrying==0)|| (nb_attempts_connect>=MAX_TRY)) {trying_connect=0;}
                    }
                 }
@@ -474,7 +474,7 @@ int main(void) {
 
                 /* Writing the message to be sent to the server */
                 int lengthPublishString;
-                dummyForBreakpoint = 0;
+//                dummyForBreakpoint = 0;
                 if (mode==1){lengthPublishString = sprintf(publishCmd,"AT+IOTPUBLISH=\"%s\",1,\"{&caseid&: %s, &SOC&: %.2f, &autonomy&: %.2f, &latitude&: hidden, &longitude&: hidden, &mode&: %d, &interval_bat_s&: %d, &interval_sending_h&: %d, &alert_battery&: %d}\",true\n", topic_publish, caseid, percentage, autonomy, mode, interval_bat_s, interval_sending_h, bool_alert_percentage);}
                 else if (mode==2){lengthPublishString = sprintf(publishCmd,"AT+IOTPUBLISH=\"%s\",1,\"{&caseid&: %s, &SOC&: %.2f, &autonomy&: %.2f, &latitude&: %s, &longitude&: %s, &mode&: %d, &interval_bat_s&: %d, &interval_sending_h&: %d, &alert_battery&: %d}\",true\n", topic_publish, caseid, percentage, autonomy, latitude, longitude, mode, interval_bat_s, interval_sending_h, bool_alert_percentage);}
                 
@@ -510,7 +510,7 @@ int main(void) {
                     tsSendInstruction(disconnectCmd, DISCONNECT_CMD_LENGTH, echo_disconnect, DISCONNECT_ECHO_LENGTH);
                     nb_attempts_disconnect++;
                     int stopTrying = memcmp(echo_disconnect_success, echo_disconnect, sizeof echo_disconnect_success);//returns 0 if successful echo
-                    dummyForBreakpoint=0;
+//                    dummyForBreakpoint=0;
                     if ((stopTrying==0)|| (nb_attempts_disconnect>=MAX_TRY)) {trying_disconnect=0;}
                 }
                 
@@ -522,7 +522,7 @@ int main(void) {
                     tsSendInstruction(destroyCmd, DESTROY_CMD_LENGTH, echo_destroy,DESTROY_ECHO_LENGTH);
                     nb_attempts_destroy++;
                     int stopTrying = memcmp(echo_destroy_success, echo_destroy, sizeof echo_destroy_success);//returns 0 if successful echo
-                    dummyForBreakpoint=0;
+//                    dummyForBreakpoint=0;
                     if ((stopTrying==0)|| (nb_attempts_destroy>=MAX_TRY)) {trying_destroy=0;}
                 }
 
@@ -548,7 +548,7 @@ int main(void) {
                     tsSendInstruction(GNSSpowerONCmd, GNSSpowerON_CMD_LENGTH, echo_GNSS_on, GNSSpowerON_ECHO_LENGTH);
                     nb_attempts_GNSS_ON++;
                     int stopListening = memcmp(echo_GNSS_on, echo_GNSS_on_success, sizeof echo_GNSS_on_success); //returns 0 if successfull echo
-                    dummyForBreakpoint=0;
+//                    dummyForBreakpoint=0;
                     if ((stopListening==0)|| (nb_attempts_GNSS_ON>=MAX_TRY)) {trying_GNSS_ON=0;} 
                 }
 
@@ -581,7 +581,7 @@ int main(void) {
                     tsSendInstruction(GNSSpowerOFFCmd, GNSSpowerOFF_CMD_LENGTH, echo_GNSS_off, GNSSpowerOFF_ECHO_LENGTH);
                     nb_attempts_GNSS_OFF++;
                     int stopListening = memcmp(echo_GNSS_off, echo_GNSS_off_success, sizeof echo_GNSS_off_success); //returns 0 if successfull echo
-                    dummyForBreakpoint=0;
+//                    dummyForBreakpoint=0;
                     if ((stopListening==0)|| (nb_attempts_GNSS_OFF>=MAX_TRY)) {trying_GNSS_OFF=0;} 
                 }
                 
